@@ -34,8 +34,8 @@ export default {
   setup() {
     return {
       imageList: [
-        'https://img.yzcdn.cn/vant/apple-1.jpg',
-        'https://img.yzcdn.cn/vant/apple-2.jpg',
+        'https://cdn.jsdelivr.net/npm/@vant/assets/apple-1.jpeg',
+        'https://cdn.jsdelivr.net/npm/@vant/assets/apple-2.jpeg',
       ],
     };
   },
@@ -80,4 +80,4 @@ app.use(Lazyload, {
 | filter | The image's listener filter | _object_ | - |
 | lazyComponent | Lazyload component | _boolean_ | `false` |
 
-> See more：[ vue-lazyload ](https://github.com/hilongjw/vue-lazyload)
+> See more: [ vue-lazyload ](https://github.com/hilongjw/vue-lazyload)

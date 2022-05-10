@@ -38,7 +38,7 @@ export default {
   setup() {
     const showShare = ref(false);
     const options = [
-      { name: 'Wechat', icon: 'wechat' },
+      { name: 'WeChat', icon: 'wechat' },
       { name: 'Weibo', icon: 'weibo' },
       { name: 'Link', icon: 'link' },
       { name: 'Poster', icon: 'poster' },
@@ -73,8 +73,8 @@ export default {
     const showShare = ref(false);
     const options = [
       [
-        { name: 'Wechat', icon: 'wechat' },
-        { name: 'Wechat Moments', icon: 'wechat-moments' },
+        { name: 'WeChat', icon: 'wechat' },
+        { name: 'WeChat Moments', icon: 'wechat-moments' },
         { name: 'Weibo', icon: 'weibo' },
         { name: 'QQ', icon: 'qq' },
       ],
@@ -109,15 +109,15 @@ export default {
     const options = [
       {
         name: 'Name',
-        icon: 'https://img.yzcdn.cn/vant/custom-icon-fire.png',
+        icon: 'https://cdn.jsdelivr.net/npm/@vant/assets/custom-icon-fire.png',
       },
       {
         name: 'Name',
-        icon: 'https://img.yzcdn.cn/vant/custom-icon-light.png',
+        icon: 'https://cdn.jsdelivr.net/npm/@vant/assets/custom-icon-light.png',
       },
       {
         name: 'Name',
-        icon: 'https://img.yzcdn.cn/vant/custom-icon-water.png',
+        icon: 'https://cdn.jsdelivr.net/npm/@vant/assets/custom-icon-water.png',
       },
     ];
 
@@ -147,7 +147,7 @@ export default {
   setup() {
     const showShare = ref(false);
     const options = [
-      { name: 'Wechat', icon: 'wechat' },
+      { name: 'WeChat', icon: 'wechat' },
       { name: 'Weibo', icon: 'weibo' },
       { name: 'Link', icon: 'link', description: 'Description' },
       { name: 'Poster', icon: 'poster' },
@@ -192,7 +192,7 @@ export default {
 | --- | --- | --- |
 | name | Option name | _string_ |
 | description | Option description | _string_ |
-| icon | Option icon，can be set to `wechat` `weibo` `qq` `link` `qrcode` `poster` `weapp-qrcode` `wechat-moments` or image URL | _string_ |
+| icon | Option icon, can be set to `wechat` `weibo` `qq` `link` `qrcode` `poster` `weapp-qrcode` `wechat-moments` or image URL | _string_ |
 | className | Option className is used to set the class props to the share item | _string_ |
 
 ### Events

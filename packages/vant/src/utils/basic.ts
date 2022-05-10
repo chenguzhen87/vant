@@ -6,6 +6,8 @@ export const extend = Object.assign;
 
 export const inBrowser = typeof window !== 'undefined';
 
+export type Numeric = number | string;
+
 // eslint-disable-next-line
 export type ComponentInstance = ComponentPublicInstance<{}, any>;
 
@@ -34,3 +36,6 @@ export function pick<T, U extends keyof T>(
     return ret;
   }, {} as Writeable<Pick<T, U>>);
 }
+
+export const toArray = <T>(item: T | T[]): T[] =>
+  Array.isArray(item) ? item : [item];

@@ -4,6 +4,7 @@ import {
   onUnmounted,
   defineComponent,
   type PropType,
+  type TeleportProps,
   type CSSProperties,
   type ExtractPropTypes,
 } from 'vue';
@@ -33,6 +34,7 @@ const [name, bem] = createNamespace('toast');
 const popupInheritProps = [
   'show',
   'overlay',
+  'teleport',
   'transition',
   'overlayClass',
   'overlayStyle',
@@ -48,6 +50,7 @@ const toastProps = {
   iconSize: numericProp,
   duration: makeNumberProp(2000),
   position: makeStringProp<ToastPosition>('middle'),
+  teleport: [String, Object] as PropType<TeleportProps['to']>,
   className: unknownProp,
   iconPrefix: String,
   transition: makeStringProp('van-fade'),
@@ -117,7 +120,7 @@ export default defineComponent({
 
       if (isDef(message) && message !== '') {
         return type === 'html' ? (
-          <div class={bem('text')} innerHTML={String(message)} />
+          <div key={0} class={bem('text')} innerHTML={String(message)} />
         ) : (
           <div class={bem('text')}>{message}</div>
         );

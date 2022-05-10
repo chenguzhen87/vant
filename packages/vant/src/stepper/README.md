@@ -139,12 +139,12 @@ export default {
 | disable-plus | Whether to disable plus button | _boolean_ | `false` |
 | disable-minus | Whether to disable minus button | _boolean_ | `false` |
 | disable-input | Whether to disable input | _boolean_ | `false` |
-| before-change | Callback function before changing，return `false` to prevent change，support return Promise | _(value: number \| string) => boolean \| Promise\<boolean\>_ | `false` |
+| before-change | Callback function before changing, return `false` to prevent change, support return Promise | _(value: number \| string) => boolean \| Promise\<boolean\>_ | `false` |
 | show-plus | Whether to show plus button | _boolean_ | `true` |
 | show-minus | Whether to show minus button | _boolean_ | `true` |
 | show-input | Whether to show input | _boolean_ | `true` |
-| long-press | Whether to allow long press | _boolean_ | `true` |
-| allow-empty | Whether to allow the input to be empty | _boolean_ | `false` |
+| long-press | Whether to enable the long press gesture, when enabled you can long press the increase and decrease buttons | _boolean_ | `true` |
+| allow-empty | Whether to allow the input value to be empty, set to `true` to allow an empty string to be passed in | _boolean_ | `false` |
 
 ### Events
 

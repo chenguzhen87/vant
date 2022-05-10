@@ -1,6 +1,6 @@
 <div class="van-doc-card">
   <div class="van-doc-intro">
-    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://img.yzcdn.cn/vant/logo.png">
+    <img class="van-doc-intro__logo" style="width: 120px; height: 120px;" src="https://cdn.jsdelivr.net/npm/@vant/assets/logo.png">
     <h2 style="margin: 0; font-size: 36px; line-height: 60px;">Vant</h2>
     <p>Mobile UI Components built on Vue</p>
   </div>
@@ -9,7 +9,7 @@
 ### Features
 
 - 🚀 1KB Component average size (min+gzip)
-- 🚀 65+ High quality components
+- 🚀 70+ High quality components
 - 💪 90%+ Unit test coverage
 - 💪 Written in TypeScript
 - 📖 Extensive documentation and demos
@@ -18,8 +18,9 @@
 - 🍭 Support Tree Shaking
 - 🍭 Support Custom Theme
 - 🍭 Support Accessibility (still improving)
-- 🍭 Support i18n
-- 🌍 Support SSR
+- 🍭 Support Dark Mode (Requires upgrade to [Vant 4](https://vant-contrib.gitee.io/vant/v4/#/en-US/config-provider))
+- 🍭 Support SSR
+- 🌍 Support i18n, built-in 20+ languages
 
 ### Quickstart
 
@@ -29,7 +30,7 @@ See in [Quickstart](#/en-US/quickstart).
 
 Vant 2 supports modern browsers and Android >= 4.0、iOS >= 8.0.
 
-Vant 3 supports modern browsers and Chrome >= 51、iOS >= 10.0 (same as Vue 3).
+Vant 3/4 supports modern browsers and Chrome >= 51、iOS >= 10.0 (same as Vue 3).
 
 ## Links
 
@@ -53,6 +54,7 @@ Vant 3 supports modern browsers and Chrome >= 51、iOS >= 10.0 (same as Vue 3).
 | [taroify](https://gitee.com/mallfoundry/taroify) | Vant Taro |
 | [vant-theme](https://github.com/Aisen60/vant-theme) | Online theme preview built on Vant UI |
 | [@antmjs/vantui](https://github.com/antmjs/vantui) | Mobile UI Components based on Vant, supporting Taro and React |
+| [sfc-playground-vant](https://github.com/zhixiaoqiang/sfc-playground-vant) | Try Vant in the Playground. Currently only Vant 3+ is supported |
 
 ### Other Links
 

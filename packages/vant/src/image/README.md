@@ -21,17 +21,37 @@ app.use(VanImage);
 ### Basic Usage
 
 ```html
-<van-image width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+<van-image
+  width="100"
+  height="100"
+  src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+/>
 ```
 
 ### Fit Mode
+
+Same as [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit).
 
 ```html
 <van-image
   width="10rem"
   height="10rem"
   fit="contain"
-  src="https://img.yzcdn.cn/vant/cat.jpeg"
+  src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+/>
+```
+
+### Position
+
+Same as [object-position](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position).
+
+```html
+<van-image
+  width="10rem"
+  height="10rem"
+  fit="cover"
+  position="left"
+  src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg"
 />
 ```
 
@@ -44,7 +64,7 @@ Show round image, it may not works at `fit=contain` and `fit=scale-down`.
   round
   width="10rem"
   height="10rem"
-  src="https://img.yzcdn.cn/vant/cat.jpeg"
+  src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg"
 />
 ```
 
@@ -55,7 +75,7 @@ Show round image, it may not works at `fit=contain` and `fit=scale-down`.
   width="100"
   height="100"
   lazy-load
-  src="https://img.yzcdn.cn/vant/cat.jpeg"
+  src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg"
 />
 ```
 
@@ -74,13 +94,14 @@ app.use(Lazyload);
 | Attribute | Description | Type | Default |
 | --- | --- | --- | --- |
 | src | Src | _string_ | - |
-| fit | Fit mode | _string_ | `fill` |
+| fit | Fit mode, same as [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) | _string_ | `fill` |
+| position `v3.4.2` | Position, same as [object-position](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position), can be set to `top` `right` `bottom` `left` or `string` | _string_ | `center` |
 | alt | Alt | _string_ | - |
 | width | Width | _number \| string_ | - |
 | height | Height | _number \| string_ | - |
 | radius | Border Radius | _number \| string_ | `0` |
 | round | Whether to be round | _boolean_ | `false` |
-| lazy-load | Whether to enable lazy load，should register [Lazyload](#/en-US/lazyload) component | _boolean_ | `false` |
+| lazy-load | Whether to enable lazy load, should register [Lazyload](#/en-US/lazyload) component | _boolean_ | `false` |
 | show-error | Whether to show error placeholder | _boolean_ | `true` |
 | show-loading | Whether to show loading placeholder | _boolean_ | `true` |
 | error-icon | Error icon | _string_ | `photo-fail` |
@@ -119,7 +140,7 @@ app.use(Lazyload);
 The component exports the following type definitions:
 
 ```ts
-import type { ImageFit, ImageProps } from 'vant';
+import type { ImageFit, ImagePosition, ImageProps } from 'vant';
 ```
 
 ## Theming

@@ -1,4 +1,3 @@
-import { get } from 'lodash-es';
 import { existsSync, readFileSync } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { join, dirname, isAbsolute } from 'path';
@@ -37,11 +36,7 @@ export const SITE_SRC_DIR = join(__dirname, '..', '..', 'site');
 // Dist files
 export const PACKAGE_ENTRY_FILE = join(DIST_DIR, 'package-entry.js');
 export const PACKAGE_STYLE_FILE = join(DIST_DIR, 'package-style.css');
-export const SITE_MOBILE_SHARED_FILE = join(DIST_DIR, 'site-mobile-shared.js');
-export const SITE_DESKTOP_SHARED_FILE = join(
-  DIST_DIR,
-  'site-desktop-shared.js'
-);
+
 export const STYLE_DEPS_JSON_FILE = join(DIST_DIR, 'style-deps.json');
 
 // Config files
@@ -74,7 +69,7 @@ export function getVantConfig() {
 
 function getSrcDir() {
   const vantConfig = getVantConfig();
-  const srcDir = get(vantConfig, 'build.srcDir');
+  const srcDir = vantConfig.build?.srcDir;
 
   if (srcDir) {
     if (isAbsolute(srcDir)) {

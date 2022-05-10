@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="logo" src="https://img.yzcdn.cn/vant/logo.png" width="120" style="margin-bottom: 10px;">
+    <img alt="logo" src="https://cdn.jsdelivr.net/npm/@vant/assets/logo.png" width="120" style="margin-bottom: 10px;">
 </p>
 
 <h1 align="center">Vant</h1>
@@ -7,7 +7,7 @@
 <p align="center">轻量、可靠的移动端 Vue 组件库</p>
 
 <p align="center">
-    <img src="https://img.shields.io/npm/v/vant/next?style=flat-square" alt="npm version" />
+    <img src="https://img.shields.io/npm/v/vant?style=flat-square" alt="npm version" />
     <img src="https://img.shields.io/github/workflow/status/youzan/vant/CI/dev?style=flat-square" alt="CI Status" />
     <img src="https://img.shields.io/codecov/c/github/youzan/vant/dev.svg?style=flat-square&color=#4fc08d" alt="Coverage Status" />
     <img src="https://img.shields.io/npm/dm/vant.svg?style=flat-square&color=#4fc08d" alt="downloads" />
@@ -25,45 +25,46 @@
 
 ### 介绍
 
-Vant 是**有赞前端团队**开源的移动端组件库，于 2017 年开源，已持续维护 4 年时间。Vant 对内承载了有赞所有核心业务，对外服务十多万开发者，是业界主流的移动端组件库之一。
+Vant 是一个**轻量、可靠的移动端组件库**，于 2017 年开源。
 
-目前 Vant 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant)、[Vue 3 版本](https://vant-contrib.gitee.io/vant/v3)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/mxdi9i7/vant-react)和[支付宝小程序版本](https://github.com/ant-move/Vant-Aliapp)。
+目前 Vant 官方提供了 [Vue 2 版本](https://vant-contrib.gitee.io/vant/v2)、[Vue 3 版本](https://vant-contrib.gitee.io/vant)和[微信小程序版本](http://vant-contrib.gitee.io/vant-weapp)，并由社区团队维护 [React 版本](https://github.com/3lang3/react-vant)和[支付宝小程序版本](https://github.com/ant-move/Vant-Aliapp)。
 
 ## 特性
 
 - 🚀 性能极佳，组件平均体积小于 1KB（min+gzip）
-- 🚀 65+ 个高质量组件，覆盖移动端主流场景
+- 🚀 70+ 个高质量组件，覆盖移动端主流场景
 - 💪 使用 TypeScript 编写，提供完整的类型定义
 - 💪 单元测试覆盖率超过 90%，提供稳定性保障
-- 📖 提供完善的中英文文档和组件示例
+- 📖 提供丰富的中英文文档和组件示例
 - 📖 提供 Sketch 和 Axure 设计资源
 - 🍭 支持 Vue 2、Vue 3 和微信小程序
 - 🍭 支持主题定制，内置 700+ 个主题变量
 - 🍭 支持按需引入和 Tree Shaking
 - 🍭 支持无障碍访问（持续改进中）
+- 🍭 支持深色模式（从 [Vant 4](https://vant-contrib.gitee.io/vant/v4/#/zh-CN/config-provider) 开始支持）
 - 🍭 支持服务器端渲染
-- 🌍 支持国际化和语言包定制
+- 🌍 支持国际化，内置 20+ 种语言包
 
 ## 安装
 
 在现有项目中使用 Vant 时，可以通过 `npm` 进行安装：
 
 ```bash
-# Vue 2 项目，安装 Vant 2
-npm i vant@2
+# Vue 3 项目，安装最新版 Vant
+npm i vant
 
-# Vue 3 项目，安装 Vant 3
-npm i vant@3
+# Vue 2 项目，安装 Vant 2
+npm i vant@latest-v2
 ```
 
 当然，你也可以通过 `yarn` 或 `pnpm` 进行安装：
 
 ```bash
 # 通过 yarn 安装
-yarn add vant@3
+yarn add vant
 
 # 通过 pnpm 安装
-pnpm add vant@3
+pnpm add vant
 ```
 
 ## 快速上手
@@ -83,7 +84,7 @@ vant 也支持按需引入、CDN 引入等方式，详细说明见 [快速上手
 
 Vant 2 支持现代浏览器以及 Android >= 4.0、iOS >= 8.0。
 
-Vant 3 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一致）。
+Vant 3/4 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一致）。
 
 ## 官方生态
 
@@ -109,6 +110,7 @@ Vant 3 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一致
 | [taroify](https://gitee.com/mallfoundry/taroify) | Vant Taro 版 |
 | [vant-theme](https://github.com/Aisen60/vant-theme) | Vant 在线主题预览工具 |
 | [@antmjs/vantui](https://github.com/antmjs/vantui) | 基于 Vant Weapp 开发的多端组件库，同时支持 Taro 和 React |
+| [sfc-playground-vant](https://github.com/zhixiaoqiang/sfc-playground-vant) | Vant Playground. 当前仅支持 Vant 3.0 以上 |
 
 ## 链接
 
@@ -120,7 +122,7 @@ Vant 3 支持现代浏览器以及 Chrome >= 51、iOS >= 10.0（与 Vue 3 一致
 
 可以手机扫码以下二维码访问手机端 demo：
 
-<img src="https://img.yzcdn.cn/vant/preview_qrcode_20180528.png" width="220" height="220" >
+<img src="https://cdn.jsdelivr.net/npm/@vant/assets/preview-qrcode.png" width="220" height="220" >
 
 ## 核心团队
 

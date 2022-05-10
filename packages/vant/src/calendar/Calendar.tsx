@@ -79,6 +79,7 @@ const calendarProps = {
   showRangePrompt: truthProp,
   confirmDisabledText: String,
   closeOnClickOverlay: truthProp,
+  safeAreaInsetTop: Boolean,
   safeAreaInsetBottom: truthProp,
   minDate: {
     type: Date,
@@ -307,8 +308,8 @@ export default defineComponent({
         // add Math.floor to avoid decimal height issues
         // https://github.com/youzan/vant/issues/5640
         bodyHeight = Math.floor(useRect(bodyRef).height);
-        scrollToCurrentDate();
       });
+      scrollToCurrentDate();
     };
 
     const reset = (date = getInitialDate()) => {
@@ -406,7 +407,12 @@ export default defineComponent({
             );
 
             if (disabledDay) {
-              select([startDay, getPrevDay(disabledDay)]);
+              const endDay = getPrevDay(disabledDay);
+              if (compareDay(startDay, endDay) === -1) {
+                select([startDay, endDay]);
+              } else {
+                select([date]);
+              }
             } else {
               select([startDay, date], true);
             }
@@ -560,6 +566,7 @@ export default defineComponent({
             closeable={props.showTitle || props.showSubtitle}
             teleport={props.teleport}
             closeOnPopstate={props.closeOnPopstate}
+            safeAreaInsetTop={props.safeAreaInsetTop}
             closeOnClickOverlay={props.closeOnClickOverlay}
             onUpdate:show={updateShow}
           />

@@ -1,20 +1,18 @@
 import { join } from 'path';
-import { get } from 'lodash-es';
 import { createRequire } from 'module';
 import hljs from 'highlight.js';
 import vitePluginMd from 'vite-plugin-md';
 import vitePluginVue from '@vitejs/plugin-vue';
 import vitePluginJsx from '@vitejs/plugin-vue-jsx';
 import { setBuildTarget, getVantConfig, isDev } from '../common/index.js';
-import {
-  SITE_DIST_DIR,
-  SITE_MOBILE_SHARED_FILE,
-  SITE_DESKTOP_SHARED_FILE,
-  SITE_SRC_DIR,
-} from '../common/constant.js';
+import { SITE_DIST_DIR, SITE_SRC_DIR } from '../common/constant.js';
 import { injectHtml } from 'vite-plugin-html';
-import type { InlineConfig } from 'vite';
+import type { InlineConfig, PluginOption } from 'vite';
 import type MarkdownIt from 'markdown-it';
+import { genSiteMobileShared } from '../compiler/gen-site-mobile-shared.js';
+import { genSiteDesktopShared } from '../compiler/gen-site-desktop-shared.js';
+import { genPackageStyle } from '../compiler/gen-package-style.js';
+import { CSS_LANG } from '../common/css.js';
 
 function markdownHighlight(str: string, lang: string) {
   if (lang && hljs.getLanguage(lang)) {
@@ -82,7 +80,7 @@ function getTitle(config: { title: string; description?: string }) {
 }
 
 function getHTMLMeta(vantConfig: any) {
-  const meta = get(vantConfig, 'site.htmlMeta');
+  const meta = vantConfig.site?.htmlMeta;
 
   if (meta) {
     return Object.keys(meta)
@@ -93,19 +91,60 @@ function getHTMLMeta(vantConfig: any) {
   return '';
 }
 
+function vitePluginGenVantBaseCode(): PluginOption {
+  const virtualMobileModuleId = 'site-mobile-shared';
+  const resolvedMobileVirtualModuleId = `vant-cli:${virtualMobileModuleId}`;
+
+  const virtualDesktopModuleId = 'site-desktop-shared';
+  const resolvedDesktopVirtualModuleId = `vant-cli:${virtualDesktopModuleId}`;
+
+  const virtualPackageStyleModuleId = /package-style/;
+  const resolvedPackageStyleVirtualModuleId = `vant-cli${virtualPackageStyleModuleId}index.${CSS_LANG}`;
+
+  return {
+    name: 'vite-plugin(vant-cli):gen-site-base-code',
+    resolveId(id) {
+      if (id === virtualMobileModuleId) {
+        return resolvedMobileVirtualModuleId;
+      }
+
+      if (id === virtualDesktopModuleId) {
+        return resolvedDesktopVirtualModuleId;
+      }
+
+      if (virtualPackageStyleModuleId.test(id)) {
+        return resolvedPackageStyleVirtualModuleId;
+      }
+    },
+    load(id) {
+      switch (id) {
+        case resolvedMobileVirtualModuleId:
+          return genSiteMobileShared();
+        case resolvedDesktopVirtualModuleId:
+          return genSiteDesktopShared();
+        case resolvedPackageStyleVirtualModuleId:
+          return genPackageStyle();
+        default:
+          break;
+      }
+    },
+  };
+}
+
 export function getViteConfigForSiteDev(): InlineConfig {
   setBuildTarget('site');
 
   const vantConfig = getVantConfig();
   const siteConfig = getSiteConfig(vantConfig);
   const title = getTitle(siteConfig);
-  const baiduAnalytics = get(vantConfig, 'site.baiduAnalytics');
-  const enableVConsole = isDev() && get(vantConfig, 'site.enableVConsole');
+  const baiduAnalytics = vantConfig.site?.baiduAnalytics;
+  const enableVConsole = isDev() && vantConfig.site?.enableVConsole;
 
   return {
     root: SITE_SRC_DIR,
 
     plugins: [
+      vitePluginGenVantBaseCode(),
       vitePluginVue({
         include: [/\.vue$/, /\.md$/],
       }),
@@ -146,13 +185,6 @@ export function getViteConfigForSiteDev(): InlineConfig {
       }),
     ],
 
-    resolve: {
-      alias: {
-        'site-mobile-shared': SITE_MOBILE_SHARED_FILE,
-        'site-desktop-shared': SITE_DESKTOP_SHARED_FILE,
-      },
-    },
-
     server: {
       host: '0.0.0.0',
     },
@@ -162,8 +194,8 @@ export function getViteConfigForSiteDev(): InlineConfig {
 export function getViteConfigForSiteProd(): InlineConfig {
   const devConfig = getViteConfigForSiteDev();
   const vantConfig = getVantConfig();
-  const outDir = get(vantConfig, 'build.site.outputDir', SITE_DIST_DIR);
-  const publicPath = get(vantConfig, 'build.site.publicPath', '/');
+  const outDir = vantConfig.build?.site?.outputDir || SITE_DIST_DIR;
+  const publicPath = vantConfig.build?.site?.publicPath || '/';
 
   return {
     ...devConfig,

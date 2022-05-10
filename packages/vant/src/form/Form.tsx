@@ -6,7 +6,6 @@ import {
   truthProp,
   numericProp,
   preventDefault,
-  makeStringProp,
   createNamespace,
 } from '../utils';
 
@@ -35,9 +34,14 @@ const formProps = {
   scrollToError: Boolean,
   validateFirst: Boolean,
   submitOnEnter: truthProp,
-  validateTrigger: makeStringProp<FieldValidateTrigger>('onBlur'),
   showErrorMessage: truthProp,
   errorMessageAlign: String as PropType<FieldTextAlign>,
+  validateTrigger: {
+    type: [String, Array] as PropType<
+      FieldValidateTrigger | FieldValidateTrigger[]
+    >,
+    default: 'onBlur',
+  },
 };
 
 export type FormProps = ExtractPropTypes<typeof formProps>;
@@ -151,10 +155,10 @@ export default defineComponent({
     };
 
     const getValues = () =>
-      children.reduce((form, field) => {
+      children.reduce<Record<string, unknown>>((form, field) => {
         form[field.name] = field.formValue.value;
         return form;
-      }, {} as Record<string, unknown>);
+      }, {});
 
     const submit = () => {
       const values = getValues();
@@ -179,6 +183,7 @@ export default defineComponent({
     useExpose<FormExpose>({
       submit,
       validate,
+      getValues,
       scrollToField,
       resetValidation,
     });

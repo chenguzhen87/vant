@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   name: '<%= name %>',
   build: {
     css: {
@@ -10,7 +10,7 @@ module.exports = {
   },
   site: {
     title: '<%= name %>',
-    logo: 'https://img.yzcdn.cn/vant/logo.png',
+    logo: 'https://cdn.jsdelivr.net/npm/@vant/assets/logo.png',
     nav: [
       {
         title: '开发指南',

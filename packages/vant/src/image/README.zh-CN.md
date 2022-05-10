@@ -23,19 +23,37 @@ app.use(VanImage);
 基础用法与原生 `img` 标签一致，可以设置 `src`、`width`、`height`、`alt` 等原生属性。
 
 ```html
-<van-image width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+<van-image
+  width="100"
+  height="100"
+  src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+/>
 ```
 
 ### 填充模式
 
-通过 `fit` 属性可以设置图片填充模式，可选值见下方表格。
+通过 `fit` 属性可以设置图片填充模式，等同于原生的 [object-fit](https://developer.mozilla.org/zh-CN/docs/Web/CSS/object-fit) 属性，可选值见下方表格。
 
 ```html
 <van-image
   width="10rem"
   height="10rem"
   fit="contain"
-  src="https://img.yzcdn.cn/vant/cat.jpeg"
+  src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+/>
+```
+
+### 图片位置
+
+通过 `position` 属性可以设置图片位置，结合 `fit` 属性使用，等同于原生的 [object-position](https://developer.mozilla.org/zh-CN/docs/Web/CSS/object-position) 属性。
+
+```html
+<van-image
+  width="10rem"
+  height="10rem"
+  fit="cover"
+  position="left"
+  src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg"
 />
 ```
 
@@ -48,7 +66,7 @@ app.use(VanImage);
   round
   width="10rem"
   height="10rem"
-  src="https://img.yzcdn.cn/vant/cat.jpeg"
+  src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg"
 />
 ```
 
@@ -61,7 +79,7 @@ app.use(VanImage);
   width="100"
   height="100"
   lazy-load
-  src="https://img.yzcdn.cn/vant/cat.jpeg"
+  src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg"
 />
 ```
 
@@ -78,7 +96,7 @@ app.use(Lazyload);
 `Image` 组件提供了默认的加载中提示，支持通过 `loading` 插槽自定义内容。
 
 ```html
-<van-image src="https://img.yzcdn.cn/vant/cat.jpeg">
+<van-image src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg">
   <template v-slot:loading>
     <van-loading type="spinner" size="20" />
   </template>
@@ -90,7 +108,7 @@ app.use(Lazyload);
 `Image` 组件提供了默认的加载失败提示，支持通过 `error` 插槽自定义内容。
 
 ```html
-<van-image src="https://img.yzcdn.cn/vant/cat.jpeg">
+<van-image src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg">
   <template v-slot:error>加载失败</template>
 </van-image>
 ```
@@ -102,7 +120,8 @@ app.use(Lazyload);
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | src | 图片链接 | _string_ | - |
-| fit | 图片填充模式 | _string_ | `fill` |
+| fit | 图片填充模式，等同于原生的 [object-fit](https://developer.mozilla.org/zh-CN/docs/Web/CSS/object-fit) 属性 | _string_ | `fill` |
+| position `v3.4.2` | 图片位置，等同于原生的 [object-position](https://developer.mozilla.org/zh-CN/docs/Web/CSS/object-position) 属性，可选值为 `top` `right` `bottom` `left` 或 `string` | _string_ | `center` |
 | alt | 替代文本 | _string_ | - |
 | width | 宽度，默认单位为 `px` | _number \| string_ | - |
 | height | 高度，默认单位为 `px` | _number \| string_ | - |
@@ -147,7 +166,7 @@ app.use(Lazyload);
 组件导出以下类型定义：
 
 ```ts
-import type { ImageFit, ImageProps } from 'vant';
+import type { ImageFit, ImagePosition, ImageProps } from 'vant';
 ```
 
 ## 主题定制

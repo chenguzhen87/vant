@@ -2,7 +2,10 @@
 
 ### 提示
 
-当前文档为 Vant 3 的更新日志，如需查询 Vant 2 的更新内容，请访问 [Vant 2 更新日志](https://youzan.github.io/vant/#/zh-CN/changelog)。
+当前文档为 Vant 3 的更新日志，其他版本请参考：
+
+- [Vant 2 更新日志](https://youzan.github.io/vant/v2/#/zh-CN/changelog)
+- [Vant 4 更新日志](https://youzan.github.io/vant/v4/#/zh-CN/changelog)
 
 ### 介绍
 
@@ -15,6 +18,154 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 - 主版本号：无固定的发布时间，包含不兼容更新和重大功能更新。
 
 ## 更新内容
+
+### [v3.4.9](https://github.com/youzan/vant/compare/v3.4.8...v3.4.9)
+
+`2022-05-02`
+
+**Feature**
+
+- Form: 支持同时设置多个 validate-trigger 值 [#10544](https://github.com/youzan/vant/issues/10544)
+- Empty: 支持在无网络的环境下离线使用，图片从 CDN 调整为内联的 SVG 图片 [#10514](https://github.com/youzan/vant/issues/10514) [#10515](https://github.com/youzan/vant/issues/10515) [#10516](https://github.com/youzan/vant/issues/10516)
+- Loading: 优化无障碍访问 [#10568](https://github.com/youzan/vant/issues/10568)
+
+**Bug Fixes**
+
+- @vant/area-data: 修复发布到 npm 时包含 tsconfig.json 文件导致编译错误的问题 [f927f6](https://github.com/youzan/vant/commit/f927f6a7518cf7d08ec8abc5dd35019685c19e3a)
+
+### [v3.4.8](https://github.com/youzan/vant/compare/v3.4.7...v3.4.8)
+
+`2022-04-16`
+
+**Feature**
+
+- CalendarDay: 增加日期行间距 [#10441](https://github.com/youzan/vant/issues/10441)
+- Empty: 支持单独设置 image 的宽高 [#10465](https://github.com/youzan/vant/issues/10465)
+- Field: 新增 enterkeyhint 属性 [#10478](https://github.com/youzan/vant/issues/10478)
+- Form: 新增 getValues 方法 [#10511](https://github.com/youzan/vant/issues/10511)
+- Icon: 新增 qq、weibo 等图标 [#10468](https://github.com/youzan/vant/issues/10468)
+- Locale: 新增 Danish 丹麦语 [#10513](https://github.com/youzan/vant/issues/10513)
+- ShareSheet: 不再依赖 CDN 上的图片资源，使用 iconfont 代替 [#10469](https://github.com/youzan/vant/issues/10469)
+- web-types.json 文件增加 event arguments 信息 [#10474](https://github.com/youzan/vant/issues/10474)
+
+**Bug Fixes**
+
+- DatetimePicker: 修复 modeValue 与选中的数据不一致的问题 [#10448](https://github.com/youzan/vant/issues/10448)
+- Rate: 修复多行时滑动选中不正确的问题 [#10500](https://github.com/youzan/vant/issues/10500)
+
+### [v3.4.7](https://github.com/youzan/vant/compare/v3.4.6...v3.4.7)
+
+`2022-03-29`
+
+**Feature**
+
+- @vant/area-data: 新增南京市江北新区 [#10410](https://github.com/youzan/vant/issues/10410)
+- CouponList: 更新优惠券为空时的占位图 [#10436](https://github.com/youzan/vant/issues/10436)
+- Locale: 新增 Icelandic 冰岛语 [#10418](https://github.com/youzan/vant/issues/10418)
+- Locale: 新增 Lao 老挝语 [#10388](https://github.com/youzan/vant/issues/10388)
+- Locale: 新增 Swedish 瑞典语 [#10419](https://github.com/youzan/vant/issues/10419)
+- NumberKeyboard: 优化随机排序算法 [#10428](https://github.com/youzan/vant/issues/10428)
+- Uploader: preview-size 属性支持单独设置宽度和高度 [#10438](https://github.com/youzan/vant/issues/10438)
+
+**Bug Fixes**
+
+- Calendar: 修复 scrollToDate 方法在个别情况下不生效的问题 [#10432](https://github.com/youzan/vant/issues/10432)
+- DatetimePicker: 修复动态改变最大值或最小值时，currentDate 不准确的问题 [#10431](https://github.com/youzan/vant/issues/10431)
+- IndexBar: 修复底部索引高亮状态不正确的问题 [#10404](https://github.com/youzan/vant/issues/10404)
+- Tab: 修复使用 v-if 延迟渲染更新不正确的问题 [#10392](https://github.com/youzan/vant/issues/10392)
+
+### [v3.4.6](https://github.com/youzan/vant/compare/v3.4.5...v3.4.6)
+
+`2022-03-13`
+
+**Feature**
+
+- Style: 新增 van-safe-area-top 样式类 [#10356](https://github.com/youzan/vant/issues/10356)
+- Calendar: 新增 safe-area-inset-top 属性 [#10358](https://github.com/youzan/vant/issues/10358)
+- Popup: 新增 safe-area-inset-top 属性 [#10357](https://github.com/youzan/vant/issues/10357)
+
+**Bug Fixes**
+
+- Skeleton: 修复个别情况下出现 non-props attributes warning 的问题 [#10384](https://github.com/youzan/vant/issues/10384)
+- SwipeCell: 修复阻止滑动事件冒泡无效的问题 [#10319](https://github.com/youzan/vant/issues/10319)
+- Toast: 修复切换 type 时 message 不显示的问题 [#10311](https://github.com/youzan/vant/issues/10311)
+- 修复提示 VisibilityState 类型不存在的问题 [#10370](https://github.com/youzan/vant/issues/10370)
+
+### [v3.4.5](https://github.com/compare/v3.4.3...v3.4.5)
+
+`2022-02-14`
+
+**Feature**
+
+- CollapseItem: 新增 lazy-render 属性 [#10270](https://github.com/youzan/vant/issues/10270)
+- Dialog: 支持通过 enter/esc 进行键盘操作 [#10261](https://github.com/youzan/vant/issues/10261)
+- Locale: 新增 Bangla 孟加拉语 [#10287](https://github.com/youzan/vant/issues/10287)
+- Locale: 新增 Indonesian 印度尼西亚语 [#10289](https://github.com/youzan/vant/issues/10289)
+- Locale: 新增 Italian 意大利语 [#10288](https://github.com/youzan/vant/issues/10288)
+- Locale: 新增 Ukrainian 乌克兰语 [#10291](https://github.com/youzan/vant/issues/10291)
+- Locale: 新增 Vietnamese 越南语 [#10294](https://github.com/youzan/vant/issues/10294)
+
+**style**
+
+- SubmitBar: 将冒号调整为英文冒号 [#10286](https://github.com/youzan/vant/issues/10286)
+
+**Types**
+
+- IndexBar: 修复 index-list 属性无法传入 number 类型的问题 [#10273](https://github.com/youzan/vant/issues/10273)
+- Toast: 修复缺少 teleport 属性定义的问题 [#10272](https://github.com/youzan/vant/issues/10272)
+- Uploader: 修复 UploaderBeforeRead 类型定义不准确的问题 [#10274](https://github.com/youzan/vant/issues/10274)
+
+### [v3.4.4](https://github.com/youzan/vant/compare/v3.4.4...v3.4.3)
+
+`2022-02-07`
+
+- Vant 3 对应的 npm tag 切换为 `latest`
+
+### [v3.4.3](https://github.com/compare/v3.4.2...v3.4.3)
+
+`2022-01-26`
+
+**Feature**
+
+- Locale: 新增 Hindi 印地语 [#10248](https://github.com/youzan/vant/issues/10248)
+- Locale: 新增 Korean 韩语 [#10243](https://github.com/youzan/vant/issues/10243)
+- 优化 cursor 样式 [#10232](https://github.com/youzan/vant/issues/10232)
+
+**Bug Fixes**
+
+- Icon: 修复使用图片作为图标时水平未对齐的问题 [#10220](https://github.com/youzan/vant/issues/10220)
+- TreeSelect: 修复重复点击时无法触发 click-nav 事件的问题 [#10239](https://github.com/youzan/vant/issues/10239)
+
+### [v3.4.2](https://github.com/compare/v3.4.1...v3.4.2)
+
+`2022-01-17`
+
+**Feature**
+
+- Cascader: 新增 show-header 属性 [#10202](https://github.com/youzan/vant/issues/10202)
+- Image: 新增 position 属性 [#10142](https://github.com/youzan/vant/issues/10142)
+- ImagePreview: 优化缩放手势的流畅度 [#10187](https://github.com/youzan/vant/issues/10187)
+- Overlay: 新增 lazy-render 属性 [#10180](https://github.com/youzan/vant/issues/10180)
+- web-types.json 现在默认使用英文描述 [#10207](https://github.com/youzan/vant/issues/10207)
+
+**Bug Fixes**
+
+- Calendar: 修复范围选择包括被禁用的日期时可能选择错误的问题 [#10196](https://github.com/youzan/vant/issues/10196)
+- Image: 修复使用 lazy-load 时可能无法正常加载的问题 [#10193](https://github.com/youzan/vant/issues/10193)
+- ImagePreview: 修复快速缩放手势导致预览关闭的问题 [#10188](https://github.com/youzan/vant/issues/10188)
+- Skeleton: 修复 row 属性为字符串类型时不生效的问题 [#10172](https://github.com/youzan/vant/issues/10172)
+- NavBar: 修复在 safari 上占位元素高度错误的问题 [#10195](https://github.com/youzan/vant/issues/10195)
+- Tabbar: 修复在 safari 上占位元素高度错误的问题 [#10195](https://github.com/youzan/vant/issues/10195)
+
+### [v3.4.1](https://github.com/compare/v3.4.0...v3.4.1)
+
+`2022-01-10`
+
+**Bug Fixes**
+
+- Area: 修复缺少遮罩层的问题 [#10164](https://github.com/youzan/vant/issues/10164)
+- DatetimePicker: 修复边界场景下出现报错的问题 [#10140](https://github.com/youzan/vant/issues/10140)
+- Popover: 修复箭头和弹出框之间存在缝隙的问题 [#10148](https://github.com/youzan/vant/issues/10148)
 
 ### [v3.4.0](https://github.com/compare/v3.3.7...v3.4.0)
 
@@ -629,7 +780,7 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
 **Bug Fixes**
 
-- 修复 Webstorm 下组件标签提示不正确的问题 [#8450](https://github.com/youzan/vant/issues/8450)
+- 修复 WebStorm 下组件标签提示不正确的问题 [#8450](https://github.com/youzan/vant/issues/8450)
 
 ### [v3.0.11](https://github.com/youzan/vant/compare/v3.0.10...v3.0.11)
 
@@ -885,7 +1036,7 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
 - 新增 Cascader 级联选择组件 [#7771](https://github.com/youzan/vant/pull/7771)
 
-<img src="https://b.yzcdn.cn/vant/cascader_1221.png">
+<img src="https://cdn.jsdelivr.net/npm/@vant/assets/cascader_1221.png">
 
 **Feature**
 
@@ -973,7 +1124,7 @@ Vant 遵循 [Semver](https://semver.org/lang/zh-CN/) 语义化版本规范。
 
 - 新增 [Popover 气泡弹出框](#/zh-CN/popover)组件 [#7579](https://github.com/youzan/vant/issues/7579)
 
-![](https://img.yzcdn.cn/vant/component-preview-1122.png)
+![](https://cdn.jsdelivr.net/npm/@vant/assets/component-preview-1122.png)
 
 **Feature**
 

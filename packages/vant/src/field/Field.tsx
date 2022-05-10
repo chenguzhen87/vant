@@ -16,6 +16,7 @@ import {
   isDef,
   extend,
   addUnit,
+  toArray,
   FORM_KEY,
   numericProp,
   unknownProp,
@@ -80,6 +81,7 @@ export const fieldSharedProps = {
   placeholder: String,
   autocomplete: String,
   errorMessage: String,
+  enterkeyhint: String,
   clearTrigger: makeStringProp<FieldClearTrigger>('focus'),
   formatTrigger: makeStringProp<FieldFormatTrigger>('onChange'),
   error: {
@@ -238,12 +240,12 @@ export default defineComponent({
 
     const validateWithTrigger = (trigger: FieldValidateTrigger) => {
       if (form && props.rules) {
-        const defaultTrigger = form.props.validateTrigger === trigger;
+        const { validateTrigger } = form.props;
+        const defaultTrigger = toArray(validateTrigger).includes(trigger);
         const rules = props.rules.filter((rule) => {
           if (rule.trigger) {
-            return rule.trigger === trigger;
+            return toArray(rule.trigger).includes(trigger);
           }
-
           return defaultTrigger;
         });
 
@@ -412,6 +414,7 @@ export default defineComponent({
         autofocus: props.autofocus,
         placeholder: props.placeholder,
         autocomplete: props.autocomplete,
+        enterkeyhint: props.enterkeyhint,
         'aria-labelledby': props.label ? `${id}-label` : undefined,
         onBlur,
         onFocus,

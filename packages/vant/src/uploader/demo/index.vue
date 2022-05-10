@@ -2,7 +2,7 @@
 import VanUploader from '..';
 import VanButton from '../../button';
 import { ref } from 'vue';
-import { useTranslate } from '../../../docs/site/use-translate';
+import { cdnURL, useTranslate } from '../../../docs/site';
 import { UploaderFileListItem } from '../types';
 import { Toast } from '../../toast';
 
@@ -21,9 +21,10 @@ const t = useTranslate({
     overSizeTip: '文件大小不能超过 500kb',
     invalidType: '请上传 jpg 格式图片',
     customUpload: '自定义上传样式',
+    previewSize: '自定义预览大小',
     previewCover: '自定义预览样式',
-    customPreviewImage: '自定义单个图片预览',
     deleteMessage: '删除前置处理',
+    customPreviewImage: '自定义单个图片预览',
   },
   'en-US': {
     status: 'Upload Status',
@@ -39,63 +40,70 @@ const t = useTranslate({
     overSizeTip: 'File size cannot exceed 500kb',
     invalidType: 'Please upload an image in jpg format',
     customUpload: 'Custom Upload Area',
+    previewSize: 'Preview Size',
     previewCover: 'Preview Cover',
-    customPreviewImage: 'Custom single prevew image',
     deleteMessage: 'Before Delete',
+    customPreviewImage: 'Custom single preview image',
   },
 });
 
 const fileList = ref([
-  { url: 'https://img.yzcdn.cn/vant/leaf.jpg' },
-  { url: 'https://img.yzcdn.cn/vant/tree.jpg' },
+  { url: cdnURL('leaf.jpeg') },
+  { url: cdnURL('tree.jpeg') },
 ]);
 
-const fileList2 = ref([{ url: 'https://img.yzcdn.cn/vant/sand.jpg' }]);
+const fileList2 = ref([{ url: cdnURL('sand.jpeg') }]);
 
 const fileList3 = ref([]);
 
-const fileList4 = ref([{ url: 'https://img.yzcdn.cn/vant/sand.jpg' }]);
+const fileList4 = ref([{ url: cdnURL('sand.jpeg') }]);
 
-const fileList5 = ref([
-  { url: 'https://img.yzcdn.cn/vant/leaf.jpg' },
+const fileList5 = ref<UploaderFileListItem[]>([
   {
-    url: 'https://img.yzcdn.cn/vant/sand.jpg',
+    url: cdnURL('sand.jpeg'),
     deletable: true,
     beforeDelete: () => {
       Toast(t('deleteMessage'));
     },
   },
   {
-    url: 'https://img.yzcdn.cn/vant/tree.jpg',
-    deletable: true,
+    url: cdnURL('tree.jpeg'),
     imageFit: 'contain',
-    previewSize: 120,
   },
 ]);
 
-const statusFileList = ref([
+const statusFileList = ref<UploaderFileListItem[]>([
   {
-    url: 'https://img.yzcdn.cn/vant/leaf.jpg',
+    url: cdnURL('leaf.jpeg'),
     status: 'uploading',
     message: t('uploading'),
   },
   {
-    url: 'https://img.yzcdn.cn/vant/tree.jpg',
+    url: cdnURL('tree.jpeg'),
     status: 'failed',
     message: t('failed'),
   },
 ]);
 
-const previewCoverFiles = ref([
+const previewCoverFiles = ref<UploaderFileListItem[]>([
   {
-    url: 'https://img.yzcdn.cn/vant/leaf.jpg',
+    url: cdnURL('leaf.jpeg'),
     file: {
       name: t('imageName'),
-    },
+    } as File,
   },
 ]);
 
-const beforeRead = (file: File) => {
+const previewSizeFiles = ref<UploaderFileListItem[]>([
+  {
+    url: cdnURL('leaf.jpeg'),
+  },
+]);
+
+const beforeRead = (file: File | File[]) => {
+  if (Array.isArray(file)) {
+    return true;
+  }
   if (file.type !== 'image/jpeg') {
     Toast(t('invalidType'));
     return false;
@@ -103,11 +111,14 @@ const beforeRead = (file: File) => {
   return true;
 };
 
-const afterRead = (file: UploaderFileListItem, detail: unknown) => {
+const afterRead = (
+  file: UploaderFileListItem | UploaderFileListItem[],
+  detail: unknown
+) => {
   console.log(file, detail);
 };
 
-const afterReadFailed = (item: UploaderFileListItem) => {
+const setItemLoading = (item: UploaderFileListItem) => {
   item.status = 'uploading';
   item.message = t('uploading');
 
@@ -115,6 +126,16 @@ const afterReadFailed = (item: UploaderFileListItem) => {
     item.status = 'failed';
     item.message = t('failed');
   }, 1000);
+};
+
+const afterReadFailed = (
+  item: UploaderFileListItem | UploaderFileListItem[]
+) => {
+  if (Array.isArray(item)) {
+    item.forEach(setItemLoading);
+  } else {
+    setItemLoading(item);
+  }
 };
 
 const onOversize = (file: UploaderFileListItem, detail: unknown) => {
@@ -163,6 +184,10 @@ const onOversize = (file: UploaderFileListItem, detail: unknown) => {
         <div class="preview-cover van-ellipsis">{{ file.name }}</div>
       </template>
     </van-uploader>
+  </demo-block>
+
+  <demo-block :title="t('previewSize')">
+    <van-uploader v-model="previewSizeFiles" preview-size="60" />
   </demo-block>
 
   <demo-block :title="t('beforeRead')">

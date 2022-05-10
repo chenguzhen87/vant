@@ -1,10 +1,11 @@
 import { DOMWrapper } from '@vue/test-utils/dist/domWrapper';
+import { cdnURL } from '../../../docs/site';
 import { trigger } from '../../../test';
 
 export const images = [
-  'https://img.yzcdn.cn/1.png',
-  'https://img.yzcdn.cn/2.png',
-  'https://img.yzcdn.cn/3.png',
+  cdnURL('apple-1.jpeg'),
+  cdnURL('apple-2.jpeg'),
+  cdnURL('apple-3.jpeg'),
 ];
 
 function triggerTwoFingerTouchmove(

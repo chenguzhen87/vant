@@ -4,7 +4,7 @@ import VanRadio from '..';
 import VanCellGroup from '../../cell-group';
 import VanCell from '../../cell';
 import { ref } from 'vue';
-import { useTranslate } from '../../../docs/site/use-translate';
+import { cdnURL, useTranslate } from '../../../docs/site';
 
 const t = useTranslate({
   'zh-CN': {
@@ -42,8 +42,8 @@ const radioLabel = ref('1');
 const radioShape = ref('1');
 const radioIconSize = ref('1');
 const radioHorizontal = ref('1');
-const activeIcon = 'https://img.yzcdn.cn/vant/user-active.png';
-const inactiveIcon = 'https://img.yzcdn.cn/vant/user-inactive.png';
+const activeIcon = cdnURL('user-active.png');
+const inactiveIcon = cdnURL('user-inactive.png');
 </script>
 
 <template>

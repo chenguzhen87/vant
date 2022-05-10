@@ -37,7 +37,10 @@ import { Toast } from 'vant';
 
 export default {
   setup() {
-    const editingContact = ref({});
+    const editingContact = ref({
+      tel: '',
+      name: '',
+    });
     const onSave = (contactInfo) => Toast('Save');
     const onDelete = (contactInfo) => Toast('Delete');
     return {
@@ -67,8 +70,8 @@ export default {
 
 | Event  | Description                               | Arguments             |
 | ------ | ----------------------------------------- | --------------------- |
-| save   | Emitted when the save button is clicked   | content：contact info |
-| delete | Emitted when the delete button is clicked | content：contact info |
+| save   | Emitted when the save button is clicked   | content: contact info |
+| delete | Emitted when the delete button is clicked | content: contact info |
 
 ### Data Structure of Contact
 

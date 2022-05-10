@@ -2,7 +2,7 @@
 import VanCell from '../../cell';
 import { ImagePreview, ImagePreviewOptions } from '..';
 import { ref } from 'vue';
-import { useTranslate } from '../../../docs/site/use-translate';
+import { cdnURL, useTranslate } from '../../../docs/site';
 import { Toast } from '../../toast';
 
 const VanImagePreview = ImagePreview.Component;
@@ -33,10 +33,10 @@ const t = useTranslate({
 });
 
 const images = [
-  'https://img.yzcdn.cn/vant/apple-1.jpg',
-  'https://img.yzcdn.cn/vant/apple-2.jpg',
-  'https://img.yzcdn.cn/vant/apple-3.jpg',
-  'https://img.yzcdn.cn/vant/apple-4.jpg',
+  cdnURL('apple-1.jpeg'),
+  cdnURL('apple-2.jpeg'),
+  cdnURL('apple-3.jpeg'),
+  cdnURL('apple-4.jpeg'),
 ];
 
 const show = ref(false);

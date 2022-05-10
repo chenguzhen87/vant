@@ -50,7 +50,7 @@ import { ref } from 'vue';
 export default {
   setup() {
     const fileList = ref([
-      { url: 'https://img.yzcdn.cn/vant/leaf.jpg' },
+      { url: 'https://cdn.jsdelivr.net/npm/@vant/assets/leaf.jpeg' },
       { url: 'https://cloud-image', isImage: true },
     ]);
 
@@ -74,12 +74,12 @@ export default {
   setup() {
     const fileList = ref([
       {
-        url: 'https://img.yzcdn.cn/vant/leaf.jpg',
+        url: 'https://cdn.jsdelivr.net/npm/@vant/assets/leaf.jpeg',
         status: 'uploading',
         message: 'Uploading...',
       },
       {
-        url: 'https://img.yzcdn.cn/vant/tree.jpg',
+        url: 'https://cdn.jsdelivr.net/npm/@vant/assets/tree.jpeg',
         status: 'failed',
         message: 'Failed',
       },
@@ -200,6 +200,23 @@ export default {
 </style>
 ```
 
+### Preview Size
+
+Using `preview-size` prop to custom the size of preview image.
+
+```html
+<!-- The default unit is px -->
+<van-uploader v-model="fileList" preview-size="60" />
+<!-- Support other units, such as rem, vh, vw -->
+<van-uploader v-model="fileList" preview-size="5rem" />
+```
+
+You can set the width and height separately.
+
+```html
+<van-uploader v-model="fileList" :preview-size="[60, 40]" />
+```
+
 ### Before Read
 
 ```html
@@ -263,19 +280,16 @@ import { Toast } from 'vant';
 export default {
   setup() {
     const fileList = ref([
-      { url: 'https://img.yzcdn.cn/vant/leaf.jpg' },
       {
-        url: 'https://img.yzcdn.cn/vant/sand.jpg',
+        url: 'https://cdn.jsdelivr.net/npm/@vant/assets/sand.jpeg',
         deletable: true,
         beforeDelete: () => {
           Toast('Customize the events and styles of a single preview image');
         },
       },
       {
-        url: 'https://img.yzcdn.cn/vant/tree.jpg',
-        deletable: true,
+        url: 'https://cdn.jsdelivr.net/npm/@vant/assets/tree.jpeg',
         imageFit: 'contain',
-        previewSize: 120,
       },
     ]);
 
@@ -293,17 +307,17 @@ export default {
 | v-model | List of uploaded files | _FileListItem[]_ | - |
 | accept | Accepted [file type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Unique_file_type_specifiers) | _string_ | `image/*` |
 | name | Input name | _number \| string_ | - |
-| preview-size | Size of preview image | _number \| string_ | `80px` |
+| preview-size | Size of preview image | _number \| string \| Array_ | `80px` |
 | preview-image | Whether to show image preview | _boolean_ | `true` |
 | preview-full-image | Whether to show full screen image preview when image is clicked | _boolean_ | `true` |
-| preview-options | Options of full screen image preview，see [ImagePreview](#/en-US/image-preview) | _object_ | - |
+| preview-options | Options of full screen image preview, see [ImagePreview](#/en-US/image-preview) | _object_ | - |
 | multiple | Whether to enable multiple selection pictures | _boolean_ | `false` |
 | disabled | Whether to disabled the upload | _boolean_ | `false` |
 | readonly `v3.1.5` | Whether to make upload area readonly | _boolean_ | `false` |
 | deletable | Whether to show delete icon | _boolean_ | `true` |
 | show-upload | Whether to show upload area | _boolean_ | `true` |
-| lazy-load | Whether to enable lazy load，should register [Lazyload](#/en-US/lazyload) component | _boolean_ | `false` |
-| capture | Capture，can be set to `camera` | _string_ | - |
+| lazy-load | Whether to enable lazy load, should register [Lazyload](#/en-US/lazyload) component | _boolean_ | `false` |
+| capture | Capture, can be set to `camera` | _string_ | - |
 | after-read | Hook after reading the file | _Function_ | - |
 | before-read | Hook before reading the file, return false to stop reading the file, can return Promise | _Function_ | - |
 | before-delete | Hook before delete the file, return false to stop reading the file, can return Promise | _Function_ | - |

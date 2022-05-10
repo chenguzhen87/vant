@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import VanSlider from '..';
 import { ref } from 'vue';
-import { useTranslate } from '../../../docs/site/use-translate';
+import { useTranslate } from '../../../docs/site';
 import { Toast } from '../../toast';
 
 const t = useTranslate({
@@ -30,14 +30,14 @@ const t = useTranslate({
 });
 
 const value1 = ref(50);
-const value2 = ref([20, 60]);
+const value2 = ref<[number, number]>([20, 60]);
 const value3 = ref(0);
 const value4 = ref(50);
 const value5 = ref(50);
 const value6 = ref(50);
 const value7 = ref(50);
 const value8 = ref(50);
-const value9 = ref([20, 60]);
+const value9 = ref<[number, number]>([20, 60]);
 
 const onChange = (value: string) => Toast(t('text') + value);
 </script>

@@ -2,7 +2,7 @@
 import VanCell from '../../cell';
 import VanShareSheet, { ShareSheetOption, ShareSheetOptions } from '..';
 import { ref, computed } from 'vue';
-import { useTranslate } from '../../../docs/site/use-translate';
+import { cdnURL, useTranslate } from '../../../docs/site';
 import { Toast } from '../../toast';
 
 const t = useTranslate({
@@ -29,7 +29,7 @@ const t = useTranslate({
     link: 'Link',
     title: 'Share',
     weibo: 'Weibo',
-    wechat: 'Wechat',
+    wechat: 'WeChat',
     poster: 'Poster',
     qrcode: 'Qrcode',
     multiLine: 'Multi Line',
@@ -38,7 +38,7 @@ const t = useTranslate({
     customIcon: 'Custom Icon',
     description: 'Description',
     weappQrcode: 'Weapp Qrcode',
-    wechatMoments: 'Wechat Moments',
+    wechatMoments: 'WeChat Moments',
   },
 });
 
@@ -73,15 +73,15 @@ const multiLineOptions = computed(() => [
 const customIconOptions = computed(() => [
   {
     name: t('name'),
-    icon: 'https://img.yzcdn.cn/vant/custom-icon-fire.png',
+    icon: cdnURL('custom-icon-fire.png'),
   },
   {
     name: t('name'),
-    icon: 'https://img.yzcdn.cn/vant/custom-icon-light.png',
+    icon: cdnURL('custom-icon-light.png'),
   },
   {
     name: t('name'),
-    icon: 'https://img.yzcdn.cn/vant/custom-icon-water.png',
+    icon: cdnURL('custom-icon-water.png'),
   },
 ]);
 

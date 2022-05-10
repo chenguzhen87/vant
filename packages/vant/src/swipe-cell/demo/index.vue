@@ -3,7 +3,7 @@ import VanSwipeCell from '..';
 import VanButton from '../../button';
 import VanCell from '../../cell';
 import VanCard from '../../card';
-import { useTranslate } from '../../../docs/site/use-translate';
+import { cdnURL, useTranslate } from '../../../docs/site';
 import { Dialog } from '../../dialog';
 
 const t = useTranslate({
@@ -29,7 +29,7 @@ const t = useTranslate({
   },
 });
 
-const imageURL = 'https://img.yzcdn.cn/vant/ipad.jpeg';
+const imageURL = cdnURL('ipad.jpeg');
 
 const beforeClose = ({ position }: { position: string }) => {
   switch (position) {
@@ -38,10 +38,12 @@ const beforeClose = ({ position }: { position: string }) => {
     case 'outside':
       return true;
     case 'right':
-      return new Promise((resolve) => {
+      return new Promise<boolean>((resolve) => {
         Dialog.confirm({
           title: t('confirm'),
-        }).then(resolve);
+        }).then(() => {
+          resolve(true);
+        });
       });
   }
 };

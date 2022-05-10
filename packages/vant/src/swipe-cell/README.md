@@ -43,7 +43,7 @@ app.use(SwipeCell);
     desc="Description"
     title="Title"
     class="goods-card"
-    thumb="https://img.yzcdn.cn/vant/cat.jpeg"
+    thumb="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg"
   />
   <template #right>
     <van-button square text="Delete" type="danger" class="delete-button" />
@@ -127,8 +127,8 @@ export default {
 | Event | Description | Arguments |
 | --- | --- | --- |
 | click | Emitted when SwipeCell is clicked | _position: 'left' \| 'right' \| 'cell' \| 'outside'_ |
-| open | Emitted when SwipeCell is opened | _{ name: string \| number, position: 'left' \| 'right' }_ |
-| close | Emitted when SwipeCell is closed | _{ name: string \| number, position: 'left' \| 'right' \| 'cell' \| 'outside' }_ |
+| open | Emitted when SwipeCell is opened | _value: { name: string \| number, position: 'left' \| 'right' }_ |
+| close | Emitted when SwipeCell is closed | _value: { name: string \| number, position: 'left' \| 'right' \| 'cell' \| 'outside' }_ |
 
 ### beforeClose Params
 
@@ -169,16 +169,3 @@ const swipeCellRef = ref<SwipeCellInstance>();
 
 swipeCellRef.value?.close();
 ```
-
-## Theming
-
-### CSS Variables
-
-The component provides the following CSS variables, which can be used to customize styles. Please refer to [ConfigProvider component](#/en-US/config-provider).
-
-| Name | Default Value | Description |
-| --- | --- | --- |
-| --van-switch-cell-padding-top | _var(--van-cell-vertical-padding) - 1px_ | - |
-| --van-switch-cell-padding-bottom | _var(--van-cell-vertical-padding) - 1px_ | - |
-| --van-switch-cell-large-padding-top | _var(--van-cell-large-vertical-padding) - 1px_ | - |
-| --van-switch-cell-large-padding-bottom | _var(--van-cell-large-vertical-padding) - 1px_ | - |

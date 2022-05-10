@@ -7,8 +7,7 @@ export default {
     packageManager: 'pnpm',
     site: {
       publicPath:
-        (typeof window === 'undefined' && process.env.PUBLIC_PATH) ||
-        '/vant/v3/',
+        (typeof window === 'undefined' && process.env.PUBLIC_PATH) || '/vant/',
     },
     vetur: {
       tagPrefix: 'van-',
@@ -18,7 +17,8 @@ export default {
     defaultLang: 'en-US',
     versions: [
       { label: 'v1', link: '/vant/v1/' },
-      { label: 'v2', link: '/vant/' },
+      { label: 'v2', link: '/vant/v2/' },
+      { label: 'v4', link: '/vant/v4/' },
     ],
     baiduAnalytics: {
       seed: 'ad6b5732c36321f2dafed737ac2da92f',
@@ -28,22 +28,24 @@ export default {
     },
     locales: {
       'zh-CN': {
-        title: 'Vant',
+        title: 'Vant 3',
+        subtitle: '（适用于 Vue 3）',
         description: '轻量、可靠的移动端组件库',
-        logo: 'https://img.yzcdn.cn/vant/logo.png',
+        logo: 'https://cdn.jsdelivr.net/npm/@vant/assets/logo.png',
         langLabel: '中',
         links: [
           {
-            logo: 'https://b.yzcdn.cn/vant/logo/weapp.svg',
+            logo: 'https://cdn.jsdelivr.net/npm/@vant/assets/weapp.svg',
             url: 'https://vant-contrib.gitee.io/vant-weapp/',
           },
           {
-            logo: 'https://b.yzcdn.cn/vant/logo/github.svg',
+            logo: 'https://cdn.jsdelivr.net/npm/@vant/assets/github.svg',
             url: 'https://github.com/youzan/vant',
           },
         ],
         searchConfig: {
-          apiKey: '90067aecdaa2c85220e2783cd305caac',
+          appId: 'BLI2GGOUL8',
+          apiKey: '07cb725cd26aa496996de6cb8ab9b5cc',
           indexName: 'vant',
           searchParameters: {
             facetFilters: ['lang:zh-CN', 'version:v3'],
@@ -474,18 +476,20 @@ export default {
         ],
       },
       'en-US': {
-        title: 'Vant',
+        title: 'Vant 3',
+        subtitle: ' (for Vue 3)',
         description: 'Mobile UI Components built on Vue',
-        logo: 'https://img.yzcdn.cn/vant/logo.png',
+        logo: 'https://cdn.jsdelivr.net/npm/@vant/assets/logo.png',
         langLabel: 'EN',
         links: [
           {
-            logo: 'https://b.yzcdn.cn/vant/logo/github.svg',
+            logo: 'https://cdn.jsdelivr.net/npm/@vant/assets/github.svg',
             url: 'https://github.com/youzan/vant',
           },
         ],
         searchConfig: {
-          apiKey: '90067aecdaa2c85220e2783cd305caac',
+          appId: 'BLI2GGOUL8',
+          apiKey: '07cb725cd26aa496996de6cb8ab9b5cc',
           indexName: 'vant',
           searchParameters: {
             facetFilters: ['lang:en-US', 'version:v3'],
@@ -850,30 +854,30 @@ export default {
                 path: 'use-event-listener',
                 title: 'useEventListener',
               },
-              // {
-              //   path: 'use-page-visibility',
-              //   title: 'usePageVisibility',
-              // },
-              // {
-              //   path: 'use-rect',
-              //   title: 'useRect',
-              // },
-              // {
-              //   path: 'use-relation',
-              //   title: 'useRelation',
-              // },
-              // {
-              //   path: 'use-scroll-parent',
-              //   title: 'useScrollParent',
-              // },
+              {
+                path: 'use-page-visibility',
+                title: 'usePageVisibility',
+              },
+              {
+                path: 'use-rect',
+                title: 'useRect',
+              },
+              {
+                path: 'use-relation',
+                title: 'useRelation',
+              },
+              {
+                path: 'use-scroll-parent',
+                title: 'useScrollParent',
+              },
               {
                 path: 'use-toggle',
                 title: 'useToggle',
               },
-              // {
-              //   path: 'use-window-size',
-              //   title: 'useWindowSize',
-              // },
+              {
+                path: 'use-window-size',
+                title: 'useWindowSize',
+              },
             ],
           },
           {

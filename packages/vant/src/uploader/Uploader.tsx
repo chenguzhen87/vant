@@ -11,20 +11,20 @@ import {
 import {
   pick,
   extend,
+  toArray,
   isPromise,
   truthProp,
-  numericProp,
   Interceptor,
   getSizeStyle,
   makeArrayProp,
   makeStringProp,
   makeNumericProp,
+  type Numeric,
   type ComponentInstance,
 } from '../utils';
 import {
   bem,
   name,
-  toArray,
   isOversize,
   filterFiles,
   isImageFile,
@@ -70,7 +70,9 @@ const uploaderProps = {
   modelValue: makeArrayProp<UploaderFileListItem>(),
   beforeRead: Function as PropType<UploaderBeforeRead>,
   beforeDelete: Function as PropType<Interceptor>,
-  previewSize: numericProp,
+  previewSize: [Number, String, Array] as PropType<
+    Numeric | [Numeric, Numeric]
+  >,
   previewImage: truthProp,
   previewOptions: Object as PropType<ImagePreviewOptions>,
   previewFullImage: truthProp,

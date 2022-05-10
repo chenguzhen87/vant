@@ -1,19 +1,29 @@
-import { defineComponent, type ExtractPropTypes } from 'vue';
+import { defineComponent, PropType, type ExtractPropTypes } from 'vue';
 import {
-  numericProp,
+  Numeric,
   getSizeStyle,
   makeStringProp,
   createNamespace,
 } from '../utils';
-import { Network } from './Network';
+import {
+  renderError,
+  renderSearch,
+  renderNetwork,
+  renderMaterial,
+} from './Images';
 
 const [name, bem] = createNamespace('empty');
 
-const PRESET_IMAGES = ['error', 'search', 'default'];
+const PRESET_IMAGES: Record<string, () => JSX.Element> = {
+  error: renderError,
+  search: renderSearch,
+  network: renderNetwork,
+  default: renderMaterial,
+};
 
 const emptyProps = {
   image: makeStringProp('default'),
-  imageSize: numericProp,
+  imageSize: [Number, String, Array] as PropType<Numeric | [Numeric, Numeric]>,
   description: String,
 };
 
@@ -29,18 +39,7 @@ export default defineComponent({
       if (slots.image) {
         return slots.image();
       }
-
-      let { image } = props;
-
-      if (image === 'network') {
-        return Network;
-      }
-
-      if (PRESET_IMAGES.includes(image)) {
-        image = `https://img.yzcdn.cn/vant/empty-image-${image}.png`;
-      }
-
-      return <img src={image} />;
+      return PRESET_IMAGES[props.image]?.() || <img src={props.image} />;
     };
 
     const renderDescription = () => {

@@ -107,12 +107,17 @@ test('should support async validator in rules prop', async () => {
       validator: (value, rule) => {
         expect(value).toEqual('123');
         expect(typeof rule).toEqual('object');
-        return new Promise((resolve) => resolve(true));
+        return new Promise((resolve) => {
+          resolve(true);
+        });
       },
       message: 'should pass',
     },
     {
-      validator: () => new Promise((resolve) => resolve(false)),
+      validator: () =>
+        new Promise((resolve) => {
+          resolve(false);
+        }),
       message: 'should fail',
     },
   ];
@@ -280,6 +285,43 @@ test('should trigger validate after inputting when validate-trigger prop is onCh
 
   await input.trigger('blur');
   expect(wrapper.find('.van-field__error-message').exists()).toBeFalsy();
+
+  await wrapper.setData({ value: '1' });
+  expect(wrapper.find('.van-field__error-message').exists()).toBeFalsy();
+
+  await wrapper.setData({ value: '' });
+  expect(wrapper.find('.van-field__error-message').exists).toBeTruthy();
+});
+
+test('should trigger validate correctly when validate-trigger prop is array', async () => {
+  const wrapper = mount({
+    data() {
+      return {
+        ...getSimpleRules(),
+        value: '',
+      };
+    },
+    render() {
+      return (
+        <Form ref="form" validateTrigger={['onBlur', 'onChange']}>
+          <Field
+            v-model={this.value}
+            name="A"
+            rules={this.rulesA}
+            modelValue=""
+          />
+        </Form>
+      );
+    },
+  });
+
+  const input = wrapper.find('input');
+
+  await input.trigger('input');
+  expect(wrapper.find('.van-field__error-message').exists()).toBeFalsy();
+
+  await input.trigger('blur');
+  expect(wrapper.find('.van-field__error-message').exists()).toBeTruthy();
 
   await wrapper.setData({ value: '1' });
   expect(wrapper.find('.van-field__error-message').exists()).toBeFalsy();

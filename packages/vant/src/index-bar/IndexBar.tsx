@@ -25,6 +25,7 @@ import {
   createNamespace,
   getRootScrollTop,
   setRootScrollTop,
+  type Numeric,
 } from '../utils';
 
 // Composables
@@ -58,7 +59,7 @@ const indexBarProps = {
   highlightColor: String,
   stickyOffsetTop: makeNumberProp(0),
   indexList: {
-    type: Array as PropType<string[]>,
+    type: Array as PropType<Numeric[]>,
     default: genAlphabet,
   },
 };
@@ -76,11 +77,12 @@ export default defineComponent({
 
   setup(props, { emit, slots }) {
     const root = ref<HTMLElement>();
-    const activeAnchor = ref('');
+    const activeAnchor = ref<Numeric>('');
 
     const touch = useTouch();
     const scrollParent = useScrollParent(root);
     const { children, linkChildren } = useChildren(INDEX_BAR_KEY);
+    let selectActiveIndex: string;
 
     linkChildren({ props });
 
@@ -116,6 +118,9 @@ export default defineComponent({
       return -1;
     };
 
+    const getMatchAnchor = (index: string) =>
+      children.find((item) => String(item.index) === index);
+
     const onScroll = () => {
       if (isHidden(root)) {
         return;
@@ -129,7 +134,16 @@ export default defineComponent({
         item.getRect(scrollParent.value, scrollParentRect)
       );
 
-      const active = getActiveAnchor(scrollTop, rects);
+      let active = -1;
+      if (selectActiveIndex) {
+        const match = getMatchAnchor(selectActiveIndex);
+        if (match) {
+          const rect = match.getRect(scrollParent.value, scrollParentRect);
+          active = getActiveAnchor(rect.top, rects);
+        }
+      } else {
+        active = getActiveAnchor(scrollTop, rects);
+      }
 
       activeAnchor.value = indexList[active];
 
@@ -150,7 +164,7 @@ export default defineComponent({
             state.top =
               Math.max(props.stickyOffsetTop, rects[index].top - scrollTop) +
               scrollParentRect.top;
-          } else if (index === active - 1) {
+          } else if (index === active - 1 && selectActiveIndex === '') {
             const activeItemTop = rects[active].top - scrollTop;
             state.active = activeItemTop > 0;
             state.top =
@@ -160,9 +174,13 @@ export default defineComponent({
           }
         });
       }
+
+      selectActiveIndex = '';
     };
 
-    const init = () => nextTick(onScroll);
+    const init = () => {
+      nextTick(onScroll);
+    };
 
     useEventListener('scroll', onScroll, { target: scrollParent });
 
@@ -190,11 +208,20 @@ export default defineComponent({
         );
       });
 
-    const scrollTo = (index: string | number) => {
-      index = String(index);
-      const match = children.find((item) => String(item.index) === index);
+    const scrollTo = (index: Numeric) => {
+      selectActiveIndex = String(index);
+      const match = getMatchAnchor(selectActiveIndex);
 
       if (match) {
+        const scrollTop = getScrollTop(scrollParent.value!);
+        const scrollParentRect = useRect(scrollParent);
+        const { offsetHeight } = document.documentElement;
+
+        if (scrollTop === offsetHeight - scrollParentRect.height) {
+          onScroll();
+          return;
+        }
+
         match.$el.scrollIntoView();
 
         if (props.sticky && props.stickyOffsetTop) {

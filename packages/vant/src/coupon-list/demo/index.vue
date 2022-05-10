@@ -3,7 +3,7 @@ import VanCouponCell from '../../coupon-cell';
 import VanPopup from '../../popup';
 import VanCouponList from '..';
 import { ref, computed } from 'vue';
-import { useTranslate } from '../../../docs/site/use-translate';
+import { useTranslate } from '../../../docs/site';
 import { CouponInfo } from '../../coupon';
 import { Toast } from '../../toast';
 
@@ -35,7 +35,7 @@ const exchangedCoupons = ref<CouponInfo[]>([]);
 
 const coupon = computed(() => ({
   id: 1,
-  condition: '无使用门槛\n最多优惠12元',
+  condition: '无门槛\n最多优惠12元',
   reason: '',
   value: 150,
   name: t('coupon.name'),

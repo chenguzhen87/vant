@@ -115,7 +115,7 @@ export default {
   setup() {
     const value1 = ref('');
     const value2 = ref('');
-    const value3 = ref('');
+    const value3 = ref('abc');
     const value4 = ref('');
     const pattern = /\d{6}/;
 
@@ -129,7 +129,7 @@ export default {
 
         setTimeout(() => {
           Toast.clear();
-          resolve(/\d{6}/.test(val));
+          resolve(val === '1234');
         }, 1000);
       });
 
@@ -308,7 +308,9 @@ import { ref } from 'vue';
 
 export default {
   setup() {
-    const value = ref([{ url: 'https://img.yzcdn.cn/vant/leaf.jpg' }]);
+    const value = ref([
+      { url: 'https://cdn.jsdelivr.net/npm/@vant/assets/leaf.jpeg' },
+    ]);
     return { value };
   },
 };
@@ -495,7 +497,7 @@ export default {
 | label-align | Field label align, can be set to `center` `right` | _string_ | `left` |
 | input-align | Field input align, can be set to `center` `right` | _string_ | `left` |
 | error-message-align | Error message align, can be set to `center` `right` | _string_ | `left` |
-| validate-trigger | When to validate the form，can be set to `onChange`、`onSubmit` | _string_ | `onBlur` |
+| validate-trigger | When to validate the form, can be set to `onChange`、`onSubmit`, supports using array to set multiple values | _string \| string[]_ | `onBlur` |
 | colon | Whether to display colon after label | _boolean_ | `false` |
 | disabled | Whether to disable form | _boolean_ | `false` |
 | readonly | Whether to be readonly | _boolean_ | `false` |
@@ -513,7 +515,7 @@ export default {
 | message | Error message | _string \| (value, rule) => string_ |
 | validator | Custom validator | _(value, rule) => boolean \| string \| Promise_ |
 | pattern | Regex pattern | _RegExp_ |
-| trigger | When to validate the form，can be set to `onChange`、`onBlur` | _string_ |
+| trigger | When to validate the form, can be set to `onChange`、`onBlur` | _string_ |
 | formatter | Format value before validate | _(value, rule) => any_ |
 
 ### validate-trigger
@@ -539,6 +541,7 @@ Use [ref](https://v3.vuejs.org/guide/component-template-refs.html) to get Form i
 | --- | --- | --- | --- |
 | submit | Submit form | - | - |
 | validate | Validate form | _name?: string \| string[]_ | _Promise_ |
+| getValues `v3.4.8` | Get current form values | - | _Record<string, unknown>_ |
 | resetValidation | Reset validation | _name?: string \| string[]_ | - |
 | scrollToField | Scroll to field | _name: string, alignToTop: boolean_ | - |
 

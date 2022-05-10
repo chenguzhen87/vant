@@ -1,6 +1,6 @@
 import type { ComponentPublicInstance } from 'vue';
 import type { ImageFit } from '../image';
-import type { Interceptor } from '../utils';
+import type { Numeric, Interceptor } from '../utils';
 import type { UploaderProps } from './Uploader';
 
 export type UploaderResultType = 'dataUrl' | 'text' | 'file';
@@ -14,26 +14,24 @@ export type UploaderFileListItem = {
   message?: string;
   imageFit?: ImageFit;
   deletable?: boolean;
-  previewSize?: number | string;
+  previewSize?: Numeric;
   beforeDelete?: Interceptor;
 };
 
-export type UploaderMaxSize = number | string | ((file: File) => boolean);
-
-type PromiseOrNot<T> = T | Promise<T>;
+export type UploaderMaxSize = Numeric | ((file: File) => boolean);
 
 export type UploaderBeforeRead = (
   file: File | File[],
   detail: {
-    name: string | number;
+    name: Numeric;
     index: number;
   }
-) => PromiseOrNot<File | File[] | undefined>;
+) => boolean | undefined | Promise<File | File[] | undefined>;
 
 export type UploaderAfterRead = (
   items: UploaderFileListItem | UploaderFileListItem[],
   detail: {
-    name: string | number;
+    name: Numeric;
     index: number;
   }
 ) => void;
